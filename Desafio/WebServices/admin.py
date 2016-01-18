@@ -2,17 +2,17 @@ from django.contrib import admin
 from .models import Company, Servers
 # Register your models here.
 
-class ServersInline(admin.StackedInline):
+class ServersInline(admin.TabularInline):
     model = Servers
-    extra = 3
+    extra = 1
 
 
 class CompanyAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['name']}),
-        ('Date information', {'fields': ['address']}),
+        ('Company Information',               {'fields': ['name', 'address']}),
     ]
     inlines = [ServersInline]
-
+    list_display = ('name', 'address')
+    search_fields = ['name']
 
 admin.site.register(Company, CompanyAdmin)
