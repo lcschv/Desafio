@@ -19,10 +19,14 @@ def search(request):
         q = request.GET['q']
         if choice == 'Company':
 	        companies = Company.objects.filter(Q(name__icontains=q)|Q(address__icontains=q))
-	        servers = Servers.objects.order_by('preco')
-	        return render(request, 'search_results.html',
-	            {'companies': companies, 'query': q,
-	            'servers':servers})
+	        if companies:
+		        servers = Servers.objects.order_by('preco')
+		        return render(request, 'search_results.html',
+		            {'companies': companies, 'query': q,
+		            'servers':servers})
+	        else:
+	        	return render(request,'search_results.html',
+	        		{'query':q})
     	
     	if choice == 'CPU':
     		servers= Servers.objects.filter(Q(cpu__icontains=q)).order_by('preco')
@@ -36,7 +40,6 @@ def search(request):
     	
     	if choice == 'Memory':
     		servers= Servers.objects.filter(Q(memoria__icontains=q)).order_by('preco')
-    		servers.objects.order_by('preco')
     		return render(request,'search_results.html',
     			{'servers':servers,'query':q})
     else:

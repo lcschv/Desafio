@@ -1,17 +1,51 @@
 <html>
 <head>
-    <title>Search</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <title>WebServiceBrooker</title>
 </head>
 <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand active" href="/search_form">WebService Broker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="/admin">Admin Page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <br><br><br>
+    <div class="container theme-showcase" role="main">
+    	<div class="jumbotron">
+        <h1 align="center" >WebService Broker</h1>
+        <p align="center">Esta é uma aplicação para buscar preços de provedores.</p>
+      </div>
+    </div>	
+    <div class="row">
     <form action="/search/" method="get">
-      <input type="radio" name="choice" value="Company" checked> Companies<br>
-	  <p>Server:</p>
+     <div class="col-md-4">
+      <h1><input type="radio" name="choice" value="Company" checked> Search by Companies:</h1>
+	 </div>
+	 <div class="col-md-6 col-md-offset-1" > 
+	  <h1>Search by Especifications:</h1>
 	  <input type="radio" name="choice" value="CPU"> CPU
 	  <input type="radio" name="choice" value="HD"> HD(GB) 
 	  <input type="radio" name="choice" value="Memory"> Memory(GB)<br>
-	  <br>
+	  </div>
+     <div class="col-md-3 col-md-offset-8"> 
       <input type="text" name="q">
       <input type="submit" value="Search">
+    </div>	
     </form>
+    </div>
 </body>
 </html>

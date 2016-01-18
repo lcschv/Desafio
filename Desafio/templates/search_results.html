@@ -1,26 +1,105 @@
-<p>You searched for: <strong>{{ query }}</strong></p>
-
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/tablesorter/jquery.tablesorter.js"></script> 
+    <title>WebServiceBroker</title>
+</head>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/search_form">WebService Broker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="#">Admin Page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <br><br><br>
+<h1>You searched for: <strong>{{ query }}</strong></h1>
 {% if companies and servers%}
-    <p>Found {{ companies|length }} companie{{ companies|pluralize }}.</p>
-    <ul>
-        {% for company in companies %}
-        <li>{{ company.id }}</li>
-        {%for server in servers%}
-        {%if company.id == server.company.id%}
-        	<li>Server{{server.cpu}}</li>	
-        {% endif %}
-        {%endfor%}
-        {% endfor %}
-    </ul>
+		<div class="col-md-6 table-responsive" >
+		          <table class="table">
+		            <thead>
+		              <tr>
+		              	<th>#</th>
+		                <th>Company Name</th>
+		                <th>CPU</th>
+		                <th>Memória</th>
+		                <th>Disco</th>
+		                <th>Sistema Operacional</th>
+		                <th>Preço</th>
+		              </tr>
+		            </thead>
+		            {% for company in companies %}
+		            {%for server in servers%}
+		            <tbody>
+		              <tr>               
+	              
+	    				{%if company.id == server.company.id%}
+        					<td>{{company.id}}</td>
+		                	<td>{{company.name}}</td>
+			                <td>{{server.cpu}}</td>
+			                <td>{{server.memoria}}</td>
+			                <td>{{server.disco}}</td>
+			                <td>{{server.os}}</td>
+			                <td>{{server.preco}}</td>
+		               	{% endif %}
+ 		             
+ 		              </tr>
+		            </tbody>
+		            {%endfor%}
+		             {% endfor %}
+		          </table>
+<a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+		        </div>
+
+
 {% elif servers and not companies%}
-    <p>Found {{ servers|length }} server{{ servers|pluralize }}.</p>
-    <ul>
-        {% for server in servers %}
-        <li>OI{{ server.cpu }}</li>
-        {% endfor %}
-    </ul>
-{% elif servers and companies %}
-    <p>Oi Boi</p>
+<div class="col-md-6">
+		          <table class="table">
+		            <thead>
+		              <tr>
+		              	<th>#</th>
+		                <th>Company Name</th>
+		                <th>CPU</th>
+		                <th>Memória</th>
+		                <th>Disco</th>
+		                <th>Sistema Operacional</th>
+		                <th>Preço</th>
+		              </tr>
+		            </thead>
+		            {%for server in servers%}
+		            <tbody>
+		              <tr>               
+	              
+        					<td>{{server.company.id}}</td>
+		                	<td>{{server.company.name}}</td>
+			                <td>{{server.cpu}}</td>
+			                <td>{{server.memoria}}</td>
+			                <td>{{server.disco}}</td>
+			                <td>{{server.os}}</td>
+			                <td>{{server.preco}}</td>
+		           
+ 		             
+ 		              </tr>
+		            </tbody>
+		             {% endfor %}
+		          </table>
+	<a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+</div>
 {%else%}
-	<p>Nothing was founded.</p>
+	<div class="alert alert-danger" role="alert">
+        Especificação: <strong>{{query}}</strong> não encontrada! Mude algumas coisas e tente novamente!
+    <a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+      </div>
 {% endif %}
