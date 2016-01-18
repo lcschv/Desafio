@@ -1,0 +1,19 @@
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if companies %}
+    <p>Found {{ companies|length }} companies{{ companies|pluralize }}.</p>
+    <ul>
+        {% for company in companies %}
+        <li>{{ company.name }}</li>
+        {% endfor %}
+    </ul>
+{% elif servers %}
+    <p>Found {{ servers|length }} server{{ servers|pluralize }}.</p>
+    <ul>
+        {% for server in servers %}
+        <li>{{ server.cpu }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No company matched your search criteria.</p>
+{% endif %}

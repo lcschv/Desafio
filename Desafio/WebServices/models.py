@@ -11,8 +11,8 @@ class Company(models.Model):
 class Servers(models.Model):
 	company = models.ForeignKey(Company, on_delete=models.CASCADE)
 	cpu = models.CharField(max_length=200)
-	memoria = models.IntegerField(default=0)
-	disco = models.IntegerField(default=0)
+	memoria = models.CharField(max_length=200)
+	disco = models.CharField(max_length=200)
 	os = models.CharField(max_length=200)
 	descricao = models.CharField(max_length=500)
 	preco = models.DecimalField(max_digits=8, decimal_places=2)
