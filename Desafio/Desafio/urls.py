@@ -20,6 +20,6 @@ from WebServices import views
 urlpatterns = [
     url(r'^WebServices/', include('WebServices.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^search_form/$', views.search_form),
+    url(r'^$', views.search_form),
     url(r'^search/$', views.search)
 ]
