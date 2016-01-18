@@ -1,19 +1,26 @@
 <p>You searched for: <strong>{{ query }}</strong></p>
 
-{% if companies %}
-    <p>Found {{ companies|length }} companies{{ companies|pluralize }}.</p>
+{% if companies and servers%}
+    <p>Found {{ companies|length }} companie{{ companies|pluralize }}.</p>
     <ul>
         {% for company in companies %}
-        <li>{{ company.name }}</li>
+        <li>{{ company.id }}</li>
+        {%for server in servers%}
+        {%if company.id == server.company.id%}
+        	<li>Server{{server.cpu}}</li>	
+        {% endif %}
+        {%endfor%}
         {% endfor %}
     </ul>
-{% elif servers %}
+{% elif servers and not companies%}
     <p>Found {{ servers|length }} server{{ servers|pluralize }}.</p>
     <ul>
         {% for server in servers %}
-        <li>{{ server.cpu }}</li>
+        <li>OI{{ server.cpu }}</li>
         {% endfor %}
     </ul>
-{% else %}
-    <p>No company matched your search criteria.</p>
+{% elif servers and companies %}
+    <p>Oi Boi</p>
+{%else%}
+	<p>Nothing was founded.</p>
 {% endif %}
