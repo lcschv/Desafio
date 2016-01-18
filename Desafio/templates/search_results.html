@@ -60,7 +60,7 @@
 		            {%endfor%}
 		             {% endfor %}
 		          </table>
-<a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+<a href="/"><button type="button" class="btn btn-default">Search Again?</button></a>
 		        </div>
 
 
@@ -95,11 +95,11 @@
 		            </tbody>
 		             {% endfor %}
 		          </table>
-	<a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+	<a href="/"><button type="button" class="btn btn-default">Search Again?</button></a>
 </div>
 {%else%}
 	<div class="alert alert-danger" role="alert">
         Especificação: <strong>{{query}}</strong> não encontrada! Mude algumas coisas e tente novamente!
-    <a href="/search_form"><button type="button" class="btn btn-default">Search Again?</button></a>
+    <a href="/"><button type="button" class="btn btn-default">Search Again?</button></a>
       </div>
 {% endif %}
